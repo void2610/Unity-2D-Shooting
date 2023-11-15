@@ -13,12 +13,12 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += Vector3.up * 0.1f;
+        this.transform.position += this.transform.up * 0.1f;
 
 
         if (Vector3.Distance(createdPosition, this.transform.position) > 10)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
     }
 

@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
         scoreTextComponent = scoreText.GetComponent<Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         scoreTextComponent.text = "Score: " + score;

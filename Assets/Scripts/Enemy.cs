@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject bulletPrefab;
+
     private float speed = 0.1f; // 移動速度
     private float changeDirectionInterval = 2f; // 方向を変える間隔
+    private float attackInterval = 1f; // 攻撃する間隔
 
     private float timer;
+    private float attackTimer;
     private int direction; // -1: 左, 1: 右
 
     void SetRandomDirection()
@@ -22,25 +27,37 @@ public class Enemy : MonoBehaviour
         Vector2 movement = new Vector2(direction * speed, 0);
         this.transform.position += (Vector3)movement;
     }
+    void Attack()
+    {
+        //自分と同じｚ回転で生成
+        Instantiate(bulletPrefab, this.transform.position + this.transform.up * 2, this.transform.rotation);
+    }
     void Start()
     {
         //changeRandomDirectionIntervalをランダムな値に設定
         changeDirectionInterval = Random.Range(0.1f, 1.5f);
         timer = changeDirectionInterval;
+        attackInterval = Random.Range(0.5f, 1.5f);
+        attackTimer = attackInterval;
         SetRandomDirection();
     }
-
-    // Update is called once per frame
 
     void Update()
     {
         timer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
         if (timer <= 0f)
         {
             SetRandomDirection();
             timer = changeDirectionInterval;
         }
+        if (attackTimer <= 0f)
+        {
+            Attack();
+            attackTimer = attackInterval;
+        }
+
     }
 
     void FixedUpdate()
