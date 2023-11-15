@@ -28,6 +28,8 @@ public class Bullet : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
+
+            GameManager.instance.AddScore(10);
         }
     }
 }

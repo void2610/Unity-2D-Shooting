@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private GameObject bulletPrefab;
-    private const float SPEED = 0.08f;
+    private const float SPEED = 0.04f;
     void Start()
     {
 
