@@ -29,7 +29,6 @@ public class Enemy : MonoBehaviour
     }
     void Attack()
     {
-        //自分と同じｚ回転で生成
         Instantiate(bulletPrefab, this.transform.position + this.transform.up * 2, this.transform.rotation);
     }
     void Start()
